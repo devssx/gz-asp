@@ -13,6 +13,14 @@ namespace MApp
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!Page.IsPostBack)
+            {
+                if (Request["s"] != null)
+                {
+
+                }
+            }
+
             var dyn = JsonConvert.DeserializeObject<dynamic>("{ Hola: 'Esto es una propiedad my friend' }");
             Response.Write(dyn.Hola);
 
