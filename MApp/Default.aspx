@@ -14,13 +14,22 @@
             <div class="modal-content" id="myModalContent">
                 <div class="modal-header">
                     <button id="modalClose" type="button" class="close" data-dismiss="modal">&times;</button>
+                    <button id="modalMin" type="button" class="close" data-dismiss="modal" style="font-size: 12px; margin-top: 5px; display:none;">&boxbox;</button>
+                    <button id="modalMax" type="button" class="close" data-dismiss="modal" style="font-size: 17.5px; margin-right:5px;">&EmptySmallSquare;</button>
+
                     <table>
                         <tr>
                             <td>
-                                <button type="submit" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-user" /></button>
+                                <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-user" /></button>
                             </td>
                             <td>
-                                <button type="button" class="logout-40x40" style="border: none; padding: 0; cursor: pointer;" data-dismiss="modal"></button>
+                                <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-user" /></button>
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-user" /></button>
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-user" /></button>
                             </td>
                         </tr>
                     </table>
@@ -36,7 +45,7 @@
         <h1>Login</h1>
         <p>Resize this responsive page to see the effect!</p>
         <button type="button" class="btn btn-primary" id="btnConsulta" data-target="#myModal" data-toggle="modal">
-            <asp:Label runat="server" ID="lbConsulta" Text="Consulta"></asp:Label>
+            <asp:Label runat="server" ID="lbConsulta" Text="Show Modal"></asp:Label>
         </button>
     </div>
 </asp:Content>

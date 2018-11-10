@@ -48,16 +48,23 @@ function ModalWindow(width, height) {
     //        $('#modalClose')[0].click();
     //    };
     //}
-    
+
+    var isOpen = false;
+
     $("#modalFrame").css('width', width + 'px');
     $("#modalFrame").css('height', height + 'px');
 
     this.show = function (page) {
+        isOpen = true;
+
         $("#modalFrame").attr("src", page);
         $('#innerModal').css({ width: (width + 40) + 'px', height: 'auto', 'max-height': '100%' });
 
-        if (this.onclose)
-            this.onclose();
+        $('#modalClose')[0].onclick = function () {
+            isOpen = false;
+            if (this.onclose)
+                this.onclose();
+        }
     }
 
     this.addFx = function (eButton, callback) {
@@ -77,13 +84,15 @@ $(function () {
     var textos = tm.GetMap('1,2,54,8,100,6,46,65');
 
     tm.GetMapAsync('1,2,54,8,654,6,46,65', 'error', function (map) {
-        alert(map[65]);
+        //alert(map[65]);
     });
 
     var mw = new ModalWindow(1200, 720);
     mw.onclose = function () { alert('hola'); }
 
-    $('#btnConsulta').click(function () { mw.show('Login.aspx'); });
+    $('#btnConsulta').click(function () {
+        mw.show('Login.aspx?s=1&t=5&u' + Math.random());
+    });
 });
 
 //uso
