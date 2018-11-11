@@ -50,30 +50,27 @@ function ModalWindow(width, height) {
     //}
 
     var isOpen = false;
+    var mw = $('#mw');
+    var mwFrame = $("#mwFrame");
+    var contentWindow = mwFrame[0].contentWindow;
 
-    $("#modalFrame").css('width', width + 'px');
-    $("#modalFrame").css('height', height + 'px');
+    mwFrame.css({ width: width + 'px', height: height + 'px' });
+    $('.modal-dialog').css({ width: (width + 32) + 'px', height: 'auto', 'max-height': '100%' });
 
     this.show = function (page) {
-        isOpen = true;
-
-        $("#modalFrame").attr("src", page);
-        $('#innerModal').css({ width: (width + 40) + 'px', height: 'auto', 'max-height': '100%' });
-
-        $('#modalClose')[0].onclick = function () {
-            isOpen = false;
-            if (this.onclose)
-                this.onclose();
-        }
+        mwFrame.attr("src", page);
+        mw.modal('show');
     }
 
-    this.addFx = function (eButton, callback) {
-        ///TODO
-        return this;
+    this.close = function () {
+        mw.modal('hide');
     }
 
-    //events
-    this.onclose;
+    // events
+    mw.on('hide.bs.modal', function (e) { isOpen = false; });
+    mw.on('show.bs.modal', function (e) { isOpen = true; });
+    //mw.on('hidden.bs.modal', function (e) { });
+    //mw.on('shown.bs.modal', function (e) { });
 }
 
 
@@ -88,7 +85,6 @@ $(function () {
     });
 
     var mw = new ModalWindow(1200, 720);
-    mw.onclose = function () { alert('hola'); }
 
     $('#btnConsulta').click(function () {
         mw.show('Login.aspx?s=1&t=5&u' + Math.random());
